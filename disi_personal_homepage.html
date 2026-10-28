@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的起始页</title>
+    <style>
+        /* 全局样式与变量 */
+        :root {
+            --bg-color: #000000;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --card-hover-bg: rgba(184, 184, 184, 0.185);
+            --border-color: rgba(255, 255, 255, 0.13);
+            --text-color: #fcfcfc;
+            --text-muted: #888888;
+            --accent-color: #e2e2e2;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);   
+            /* background: linear-gradient(to top, #7e7e7e, #202020, #2b2b2b);*/
+            background-image: 
+                radial-gradient(at 50% 0%, rgba(0, 0, 0, 0.822) 0px, transparent 50%),
+                radial-gradient(at 50% 100%, rgba(255, 255, 255, 0.37) 0px, transparent 50%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-color);
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        /* 时钟区域 */
+        .clock-container {
+            text-align: center;
+        }
+
+        .time {
+            font-size: 4.7cqi;
+            font-weight: 200;
+            letter-spacing: 5px;
+            text-shadow: 0 3px 9px rgba(255, 255, 255, 0.753);
+        }
+
+        .date {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-top: -5px;
+        }
+
+        /* 搜索框 */
+        .search-box {
+            width: 100%;
+            max-width: 600px;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 14px 22px;
+            border-radius: 30px;
+            border: 2px solid var(--border-color);
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            color: var(--text-color);
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .search-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .search-input:focus {
+            border-color: var(--accent-color);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 15px rgba(201, 201, 201, 0.3);
+        }
+
+        /* 标签导航网格 */
+        .bookmarks-grid {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        .bookmark-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 12px;
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            text-decoration: none;
+            color: var(--text-color);
+            transition: all 0.2s ease;
+        }
+
+        .bookmark-card:hover {
+            background: var(--card-hover-bg);
+            transform: translateY(-4px);
+            border-color: var(--accent-color);
+        }
+
+        .bookmark-icon {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 8px;
+            border-radius: 6px;
+        }
+
+        .bookmark-title {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-color);
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 600px) {
+            .time { font-size: 3.2rem; }
+            .bookmarks-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- 时钟显示 -->
+        <div class="clock-container">
+            <div class="time" id="time">00:00</div>
+            <div class="date" id="date">2026年1月1日 星期一</div>
+        </div>
+
+        <!-- 极简搜索框 -->
+        <div class="search-box">
+            <input type="text" class="search-input" id="search-input" placeholder="Google" autofocus>
+        </div>
+
+        <!-- 自定义书签/标签栏（在这里修改你的常用网站） -->
+        <div class="bookmarks-grid">
+            
+            <!-- 标签 1：Bilibili -->
+            <a href="https://www.bilibili.com" class="bookmark-card" target="_blank">
+                <img class="bookmark-icon" src="https://www.google.com/s2/favicons?domain=bilibili.com&sz=64" alt="Bilibili">
+                <span class="bookmark-title">Bilibili</span>
+            </a>
+
+            <!-- 标签 2：GitHub -->
+            <a href="https://github.com" class="bookmark-card" target="_blank">
+                <img class="bookmark-icon" src="https://www.google.com/s2/favicons?domain=github.com&sz=64" alt="GitHub">
+                <span class="bookmark-title">GitHub</span>
+            </a>
+
+            <!-- 标签 3：知乎 -->
+            <a href="https://www.zhihu.com" class="bookmark-card" target="_blank">
+                <img class="bookmark-icon" src="https://www.google.com/s2/favicons?domain=zhihu.com&sz=64" alt="知乎">
+                <span class="bookmark-title">知乎</span>
+            </a>
+
+            <!-- 标签 4：V2EX -->
+            <a href="https://www.v2ex.com" class="bookmark-card" target="_blank">
+                <img class="bookmark-icon" src="https://www.google.com/s2/favicons?domain=v2ex.com&sz=64" alt="V2EX">
+                <span class="bookmark-title">V2EX</span>
+            </a>
+
+            <!-- 标签 5：YouTube -->
+            <a href="https://www.youtube.com" class="bookmark-card" target="_blank">
+                <img class="bookmark-icon" src="https://www.google.com/s2/favicons?domain=youtube.com&sz=64" alt="YouTube">
+                <span class="bookmark-title">YouTube</span>
+            </a>
+
+            <!-- 标签 6：ChatGPT -->
+            <a href="https://chatgpt.com" class="bookmark-card" target="_blank">
+                <img class="bookmark-icon" src="https://www.google.com/s2/favicons?domain=chatgpt.com&sz=64" alt="ChatGPT">
+                <span class="bookmark-title">ChatGPT</span>
+            </a>
+
+            <!-- 复制下方块即可继续增加新标签 -->
+            <!-- 
+            <a href="你的网站链接" class="bookmark-card" target="_blank">
+                <img class="bookmark-icon" src="https://www.google.com/s2/favicons?domain=你的网站域名&sz=64" alt="名字">
+                <span class="bookmark-title">网站显示名字</span>
+            </a> 
+            -->
+
+        </div>
+    </div>
+
+    <script>
+        // 实时刷新时间脚本
+        function updateClock() {
+            const now = new Date();
+            
+            // 补零格式化
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            document.getElementById('time').textContent = `${hours}:${minutes}`;
+
+            // 日期显示
+            const options = { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' };
+            document.getElementById('date').textContent = now.toLocaleDateString('en-UK', options);
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // 搜索框回车搜索 (默认使用 Bing，可替换为 Google 或 百度)
+        document.getElementById('search-input').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                const query = this.value.trim();
+                if (query) {
+                    // 想换成百度可改为: https://www.baidu.com/s?wd=
+                    // 想换成谷歌可改为: https://www.google.com/search?q=
+                    // 这里使用了必应搜索: https://cn.bing.com/search?q
+                    window.location.href = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
